@@ -6,10 +6,10 @@ import { useNavigate } from "react-router-dom";
 function History() {
   const [history, setHistory] = useState([]);
   const navigate = useNavigate();
-
+const API = import.meta.env.VITE_API_URL;
   const fetchHistory = async () => {
     try {
-      const res = await axios.get("http://localhost:8080/api/history");
+      const res = await axios.get(`${API}/api/history`); 
       setHistory(res.data);
     } catch (err) {
       console.error(err);
@@ -24,7 +24,7 @@ function History() {
     if (!window.confirm("Delete this item?")) return;
 
     try {
-      await axios.delete(`http://localhost:8080/api/history/${id}`);
+      await axios.delete(`${API}/api/history/${id}`);
       setHistory((prev) => prev.filter((item) => item._id !== id));
     } catch (err) {
       console.error(err);
@@ -35,7 +35,7 @@ function History() {
     if (!window.confirm("Clear all history?")) return;
 
     try {
-      await axios.delete("http://localhost:8080/api/history");
+      await axios.delete(`${API}/api/history`);
       setHistory([]);
     } catch (err) {
       console.error(err);

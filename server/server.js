@@ -5,8 +5,12 @@ const debugrou=require("./routes/debugroute")
 require("dotenv").config();
 const connectDB = require("./config/db");
 const app=express()
+import cors from "cors";
+
 app.use(cors({
-  origin: "*"
+  origin: "*",
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true
 }));
 app.use(express.json())
 app.use('/api',debugrou)

@@ -11,6 +11,8 @@ function Home() {
   const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
+const API = import.meta.env.VITE_API_URL;
+
 
   const handleSubmit = async () => {
     if (!error || !code) {
@@ -20,7 +22,7 @@ function Home() {
 
     try {
       setLoading(true);
-      const res = await axios.post("http://localhost:8080/api/debug", {
+      const res = await axios.post(`${API}/api/debug`, {
         error,
         code,
         language
