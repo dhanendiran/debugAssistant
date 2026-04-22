@@ -7,10 +7,10 @@ function DebugView() {
   const { id } = useParams();
   const navigate = useNavigate();
   const [data, setData] = useState(null);
-
+  const API = import.meta.env.VITE_API_URL;
   const fetchData = async () => {
     try {
-      const res = await axios.get(`http://localhost:8080/api/debug/${id}`);
+      const res = await axios.get(`${API}/api/debug/${id}`);
       setData(res.data);
     } catch (err) {
       console.error(err);
